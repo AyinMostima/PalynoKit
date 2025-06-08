@@ -1,0 +1,27 @@
+
+conda create -n torchenv python=3.10
+pip install -e .
+
+
+conda install -c conda-forge gcc_linux-64=11 gxx_linux-64=11
+pip install -U openmim
+mim install mmcv
+
+
+x64 Native Tools Command Prompt for VS 2022
+set DISTUTILS_USE_SDK=1
+mamba_ssm-2.2.4
+pip install causal-conv1d
+pip install mamba-ssm
+pip install DCNv4
+
+
+x64 Native Tools Command Prompt for VS
+cd /d DCNv4_op
+
+python setup.py build install
+    
+set DISTUTILS_USE_SDK=1
+set TORCH_CUDA_ARCH_LIST=12.0
+python setup.py build install
+            
