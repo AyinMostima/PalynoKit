@@ -134,16 +134,70 @@ except Exception as e:
 ### 4. Execute the Script
 Run the script from your terminal (with the virtual environment activated):
 ```bash
-python analyze.py
+python analyze.p
 ```
+
+
 ## Understanding the Output
+
 After the script finishes, the specified OUTPUT_FOLDER will contain the following subdirectories:
   • /annotated_images/: Your original images with detection boxes drawn on them.
   • /crops/: Cropped images of every detected object, sorted into subfolders by class.
   • /detailed_results/: CSV files containing detailed information for every detection in each image.
   • analysis_plots.png: A summary image with charts if GENERATE_ANALYSIS_PLOTS is True.
   • summary_results.csv: A single CSV file summarizing counts from all processed images.
+
+## Example Output Plots
+When GENERATE_ANALYSIS_PLOTS is set to True, the script will generate several summary plots to help visualize the results across all processed images. Below are examples of these plots.
+### Class Distribution (Pie Chart)
+This plot provides a quick overview of the proportion of each detected pollen class, which is useful for understanding the overall composition.
+
+<img src=".\example\pipeline_class_distribution_pie.png" alt="pipeline_class_distribution_pie" style="zoom:15%;" />
+
+
+
+
+
+### Class Distribution (Bar Chart)
+This bar chart displays the absolute count for each pollen class, sorted from the most to the least frequent, allowing for easy comparison of quantities.
+
+<img src=".\example\pipeline_class_distribution_bar.png" alt="pipeline_class_distribution_bar" style="zoom:30%;" />
+
+### Average Class Confidence
+This chart shows the average confidence score for the detections within each class. It helps in assessing the model's performance and reliability on different pollen types.
+
+<img src=".\example\pipeline_average_cls_confidence_bar.png" alt="pipeline_average_cls_confidence_bar" style="zoom:67%;" />
+
+
+
+## Example Output Tables
+
+Two main CSV files are produced as part of the detailed results:
+
+### Detection Classification Details (pipeline_detection_classification_details.csv)
+
+This CSV file records information for each detected pollen grain across all processed images. It includes bounding box coordinates, detection confidence, classification results, and size measurements.
+
+| ImageName              | DetectionID_in_Image | Original_BBOX_x1 | Original_BBOX_y1 | Original_BBOX_x2 | Original_BBOX_y2 | DetectionConfidence | ClassName_From_Classifier | ClassificationConfidence | PixelRadius (pixels) | ActualRadius_microns (microns) |
+| ---------------------- | -------------------- | ---------------- | ---------------- | ---------------- | ---------------- | ------------------- | ------------------------- | ------------------------ | -------------------- | ------------------------------ |
+| CM0402_01_tile1021.jpg | 0                    | 312              | 20               | 341              | 79               | 0.7791              | Platanus                  | 0.4003                   | 22                   | 5.5                            |
+| CM0402_01_tile1042.jpg | 0                    | 19               | 0                | 70               | 24               | 0.7096              | Urticaceae_fam            | 0.955                    | 18.75                | 4.69                           |
+| CM0402_01_tile1043.jpg | 1                    | 277              | 79               | 330              | 130              | 0.8088              | Urticaceae_fam            | 0.935                    | 26                   | 6.5                            |
+
+### Summary Report (pipeline_summary_report.csv)
+
+This table summarizes the counts and average statistics for each pollen type found across all images.
+
+| PollenType     | Count | Percentage (%) | AverageConfidence | AveragePixelRadius (pixels) | AverageActualRadius_microns (microns) |
+| -------------- | ----- | -------------- | ----------------- | --------------------------- | ------------------------------------- |
+| Urticaceae_fam | 5839  | 24.64          | 0.7229            | 24.37                       | 6.09                                  |
+| Taxus          | 3874  | 16.34          | 0.7260            | 19.10                       | 4.77                                  |
+| Platanus       | 2253  | 9.51           | 0.6846            | 25.92                       | 6.48                                  |
+
+
+
 ## Ultralytics Framework Integration
+
 A key feature of this tool is its direct compatibility with the Ultralytics ecosystem.
   • Use Any Ultralytics Model: You can use any model format supported by Ultralytics simply by providing the path to the .pt file in the MODEL_FILE variable.
   • Use Custom-Trained Models: If you train your own detection model using the Ultralytics training pipeline, the resulting best.pt from your training run can be used directly with this analysis script without any modification.
