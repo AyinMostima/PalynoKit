@@ -92,8 +92,8 @@ Follow these steps to set up the environment. **Python 3.10 or newer is required
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/your-repository.git
-cd your-repository
+git clone https://github.com/AyinMostima/PalynoKit.git
+cd PalynoKit
 ```
 
 ### 2. Create a Virtual Environment
@@ -115,21 +115,15 @@ It is highly recommended to use a virtual environment.
     ```
 
 ### 3. Install Dependencies
-First, install PyTorch according to your system's CUDA version for GPU support. Visit the [PyTorch official website](https://pytorch.org/get-started/locally/) for the correct command.
+Install PyTorch according to your system's CUDA version for GPU support. Visit the [PyTorch official website](https://pytorch.org/get-started/locally/) for the correct command. Install this package and its remaining dependencies:
 
-For example, with CUDA 11.8:
 ```bash
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-```
-
-Then, install this package and its remaining dependencies:
-```bash
-pip install .
+pip install -e .
 pip install matplotlib seaborn # Required for generating analysis plots
 ```
 
 ### 4. (Optional) Install MMCV
-For certain models(HieraEdgeNet-TADDH) or features that rely on the OpenMMLab ecosystem, you may need to install `mmcv`. This often requires a specific compiler version.
+For certain models (HieraEdgeNet-TADDH) or features that rely on the OpenMMLab ecosystem, you may need to install `mmcv`. This often requires a specific compiler version.
 
 ```bash
 # Then, install openmim and mmcv
