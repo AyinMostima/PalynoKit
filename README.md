@@ -224,7 +224,8 @@ After the script finishes, the specified OUTPUT_FOLDER will contain the followin
   • summary_results.csv: A single CSV file summarizing counts from all processed images.
 ## Ultralytics Framework Integration
 A key feature of this tool is its direct compatibility with the Ultralytics ecosystem.
-  • Use Any Ultralytics Model: You can use any model format supported by Ultralytics (e.g., YOLOv8, YOLOv9) simply by providing the path to the .pt file in the MODEL_FILE variable.
+  • Use Any Ultralytics Model: You can use any model format supported by Ultralytics simply by providing the path to the .pt file in the MODEL_FILE variable.
   • Use Custom-Trained Models: If you train your own detection model using the Ultralytics training pipeline, the resulting best.pt from your training run can be used directly with this analysis script without any modification.
+
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
