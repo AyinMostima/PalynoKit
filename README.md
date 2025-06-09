@@ -80,7 +80,7 @@ OUTPUT_FOLDER = r"path/to/your/output/results"
 
 # Display: **MODEL_FILE**: Path to the .pt model file you want to use.
 MODEL_FILE = r"path/to/your/HieraEdgeNet.pt"
-
+MODEL_ARCH = "yolo"      # or "rtdetr"
 # Confidence threshold for detections.
 CONFIDENCE = 0.3
 
@@ -104,6 +104,7 @@ print("Starting analysis script...")
 print(f"Input: {INPUT_FOLDER}")
 print(f"Output: {OUTPUT_FOLDER}")
 print(f"Model: {MODEL_FILE}")
+print(f"**Model Architecture**: {MODEL_ARCH}")
 
 try:
     # Initialize the analyzer
@@ -112,7 +113,8 @@ try:
         output_dir=OUTPUT_FOLDER,
         conf_threshold=CONFIDENCE,
         microns_per_pixel=MICRONS_PER_PIXEL,
-        device=DEVICE
+        device=DEVICE,
+        model_arch=MODEL_ARCH,
     )
 
     # Process the input directory
@@ -134,7 +136,7 @@ except Exception as e:
 ### 4. Execute the Script
 Run the script from your terminal (with the virtual environment activated):
 ```bash
-python analyze.p
+python analyze.py
 ```
 
 
